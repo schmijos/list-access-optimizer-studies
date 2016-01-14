@@ -12,10 +12,6 @@ class CountingList
     end
   end
 
-  def insert(value)
-    @list << value
-  end
-
   def length
     @list.length
   end

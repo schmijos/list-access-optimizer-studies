@@ -11,16 +11,6 @@ RSpec.describe CountingList do
     expect(list.retrieve('notpresent')).to be_nil
   end
 
-  it 'can insert items' do
-    expect {
-      list.insert('value1')
-      list.insert('value2')
-    }.to change { list.length }.by(2)
-
-    expect(list.retrieve('value1')).to eql('value1')
-    expect(list.retrieve('value2')).to eql('value2')
-  end
-
   it 'can count retrieve hops' do
     expect { list.retrieve('item2') }.to change { list.hop_count }.by(1)
     expect { list.retrieve('item4') }.to change { list.hop_count }.by(3)
