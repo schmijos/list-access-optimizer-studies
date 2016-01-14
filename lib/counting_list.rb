@@ -1,11 +1,15 @@
 class CountingList
   def initialize(*items)
     @list = items
+    @hop_count = 0
   end
 
   def retrieve(value)
     position = @list.index(value)
-    @list[position] if position
+    if position
+      @hop_count += position
+      @list[position]
+    end
   end
 
   def insert(value)
@@ -16,4 +20,7 @@ class CountingList
     @list.length
   end
 
+  def hop_count
+    @hop_count
+  end
 end
