@@ -15,4 +15,5 @@ class CountingList
   def length
     @list.length
   end
+
 end
