@@ -1,20 +1,23 @@
-Item = Struct.new(:value, :previous, :next)
+Item = Struct.new(:value, :next)
 
 class CountingList
-  def initialize(*items)
+  attr_accessor :head
+
+  def initialize(*values, &optimizer)
     @head = nil
-    items.reverse_each do |value|
-      current = Item.new(value, nil, @head)
+    values.reverse_each do |value|
+      current = Item.new(value, @head)
       @head = current
     end
     @hop_count = 0
+    @optimizer = optimizer if block_given?
   end
 
   def retrieve(value, &optimize)
     current = @head
     while current
       if current.value == value
-        optimize.call(@head, current) if block_given?
+        @optimizer.call(self, current) if @optimizer
         return current.value
       end
       current = current.next
