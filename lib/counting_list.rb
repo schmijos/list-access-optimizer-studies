@@ -3,14 +3,18 @@ Item = Struct.new(:value, :next)
 class CountingList
   attr_accessor :head
 
-  def initialize(*values, &optimizer)
+  def initialize(*values)
     @head = nil
     values.reverse_each do |value|
       current = Item.new(value, @head)
       @head = current
     end
     @hop_count = 0
-    @optimizer = optimizer if block_given?
+  end
+
+  def with_optimizer(&optimizer)
+    @optimizer = optimizer
+    self
   end
 
   def retrieve(value, &optimize)

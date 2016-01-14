@@ -2,7 +2,7 @@ require_relative '../../lib/strategies/move_to_front'
 
 RSpec.describe Strategies::MoveToFront do
   subject(:list) do
-    CountingList.new('item1', 'item2', 'item3', 'item4') do |list, current|
+    CountingList.new('item1', 'item2', 'item3', 'item4').with_optimizer do |list, current|
       described_class.optimize(list, current)
     end
   end
