@@ -1,7 +1,7 @@
-require './linked_list.rb'
+require_relative '../lib/counting_list.rb'
 
-RSpec.describe LinkedList do
-  subject(:list) { LinkedList.new('blub', 'lol') }
+RSpec.describe CountingList do
+  subject(:list) { CountingList.new('blub', 'lol') }
 
   it 'can retrieve an item which is present' do
     expect(list.retrieve('blub')).to eql('blub')

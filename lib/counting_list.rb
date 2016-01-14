@@ -1,4 +1,4 @@
-class LinkedList
+class CountingList
   def initialize(*items)
     @list = items
   end
