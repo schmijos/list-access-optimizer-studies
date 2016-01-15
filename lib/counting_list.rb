@@ -3,7 +3,7 @@ Item = Struct.new(:value, :next)
 class CountingList
   attr_accessor :head
 
-  def initialize(*values)
+  def initialize(values)
     @head = nil
     values.reverse_each do |value|
       current = Item.new(value, @head)
@@ -17,7 +17,7 @@ class CountingList
     self
   end
 
-  def retrieve(value, &optimize)
+  def retrieve(value)
     current = @head
     while current
       if current.value == value

@@ -1,5 +1,3 @@
-require_relative '../counting_list'
-
 module Strategies
   class MoveToFront
     def self.optimize(list, last_accessed_item)
