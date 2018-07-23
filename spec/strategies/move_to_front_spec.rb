@@ -29,7 +29,7 @@ RSpec.describe Strategies::MoveToFront do
       end
     end
 
-    it 'it is optimized after a lot of accesses' do
+    it 'is optimized after a lot of accesses' do
       5000.times do
         big_list.retrieve(values.sample)
       end
@@ -39,6 +39,27 @@ RSpec.describe Strategies::MoveToFront do
           big_list.retrieve(values.sample)
         end
       }.to change { big_list.hop_count }.by_at_most(100_000)
+    end
+
+    subject(:big_list_without_opt) { CountingList.new(values) }
+
+    it 'compares optimized search with default search' do
+      count_with_opt = []
+      count_without_opt = []
+
+      10.times do
+        10.times do
+          sample = values.sample
+          big_list_without_opt.retrieve(sample)
+          big_list.retrieve(sample)
+        end
+        count_with_opt.push(big_list.hop_count)
+        count_without_opt.push(big_list_without_opt.hop_count)
+      end
+      sum_with_opt = count_with_opt.reduce(:+)
+      sum_without_opt = count_without_opt.reduce(:+)
+
+      expect(sum_with_opt).to be < sum_without_opt
     end
   end
 end
