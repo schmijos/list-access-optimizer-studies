@@ -21,7 +21,7 @@ class CountingList
     current = @head
     while current
       if current.value == value
-        @optimizer.call(self, current) if @optimizer
+        @optimizer&.call(self, current)
         return current.value
       end
       current = current.next
@@ -29,9 +29,7 @@ class CountingList
     end
   end
 
-  def hop_count
-    @hop_count
-  end
+  attr_reader :hop_count
 
   def to_a
     result = []

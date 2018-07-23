@@ -4,9 +4,7 @@ module Strategies
       return if last_accessed_item == list.head
 
       current = list.head
-      while current.next != last_accessed_item
-        current = current.next
-      end
+      current = current.next while current.next != last_accessed_item
 
       current.next = last_accessed_item.next
       last_accessed_item.next = list.head

@@ -1,7 +1,7 @@
 require_relative '../lib/counting_list.rb'
 
 RSpec.describe CountingList do
-  subject(:list) { described_class.new(['item1', 'item2', 'item3', 'item4']) }
+  subject(:list) { described_class.new(%w[item1 item2 item3 item4]) }
 
   it 'can retrieve an item which is present' do
     expect(list.retrieve('item4')).to eql('item4')
@@ -20,7 +20,7 @@ RSpec.describe CountingList do
   end
 
   it 'can convert the linked list to an array' do
-    expect(list.to_a).to eql(['item1', 'item2', 'item3', 'item4'])
+    expect(list.to_a).to eql(%w[item1 item2 item3 item4])
   end
 
   context 'stress test' do
@@ -32,9 +32,9 @@ RSpec.describe CountingList do
         big_list.retrieve(values[100])
       end
 
-      expect {
+      expect do
         big_list.retrieve(values[100])
-      }.to change { big_list.hop_count }.by(100)
+      end.to change { big_list.hop_count }.by(100)
     end
   end
 end
