@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+require_relative '../lib/counting_list'
+require_relative '../lib/strategies/move_to_front'
+require_relative '../lib/strategies/your_own_strategy'
+
+optimizers = [
+  {
+    name: 'Normal unoptimized linked list',
+    block: proc {}
+  },
+  {
+    name: 'Linked list optimized with move to front',
+    block: proc { |list, current| Strategies::MoveToFront.optimize(list, current) }
+  },
+  {
+    name: 'Linked list optimized with BEST STRATEGY EVAA11!11',
+    block: proc { |list, current| Strategies::YourOwnStrategy.optimize(list, current) }
+  }
+]
+
+seed = Random.new_seed
+puts "Initializing experiment with random seed #{seed}"
+
+optimizers.each do |optimizer|
+  puts "Strategy: #{optimizer[:name]}"
+  ['goethe_wette'].each do |sample_name|
+    rng = Random.new(seed)
+    items = File.read("spec/data/#{sample_name}.txt").split(/\W+/)
+    linked_list = CountingList.new(items).with_optimizer(&optimizer[:block])
+
+    30_000.times { linked_list.retrieve(items.sample(random: rng)) }
+
+    puts "  #{sample_name}: #{linked_list.hop_count}"
+  end
+end
