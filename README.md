@@ -2,7 +2,7 @@
 
 The aim of this project is to try out different singly-linked list item access
 optimizations. There's already an implementation of move-to-front which can be
-taken as a starting point. You can implement your own [here](lib/strategies/your_own_strategy.rb)
+taken as a starting point. You can implement your own [here](lib/strategies/your_own_strategy.rb).
 
 ## Installation
 
