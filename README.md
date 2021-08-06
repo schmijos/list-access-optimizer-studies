@@ -1,12 +1,12 @@
 # Linked list access optimizing challenge
 
-The aim of this project is to try out different linked list item access
+The aim of this project is to try out different singly-linked list item access
 optimizations. There's already an implementation of move-to-front which can be
-taken as a starting point.
+taken as a starting point. You can implement your own [here](lib/strategies/your_own_strategy.rb)
 
 ## Installation
 
-Ruby 2.5.1 via *rbenv* is recommended. But it should work with older rubies,
+Ruby 3.0.2 via *rbenv* is recommended. But it should work with older rubies,
 too.
 
     bundle install
@@ -34,4 +34,4 @@ Strategy: Linked list optimized with BEST STRATEGY EVAA11!11
 
 ## Copyright
 
-2009-2018 Josua Schmid under the MIT license
+2009-2021 Josua Schmid under the MIT license
